@@ -24,12 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
-
-
-
-        Schema::defaultStringLength(191);
-
+         Schema::defaultStringLength(191);
 
         $this->app->booted(function () {
             try {
@@ -52,8 +47,6 @@ class AppServiceProvider extends ServiceProvider
                 return back()->withErrors('Une erreur est survenue lors de la synchronisation des permissions.', 'Message d\'erreur:' . $e->getMessage());
             }
         });
-
-
 
         //recuperer les parametres
         if (Schema::hasTable('parametres')) {
