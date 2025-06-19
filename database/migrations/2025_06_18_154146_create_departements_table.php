@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Departement;
+use App\Models\Employe;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,17 +22,11 @@ return new class extends Migration
         });
 
 
-        Schema::table('employes', function(Blueprint $table){
+        Schema::table('employes',function(Blueprint $table){
 
-            $table->foreignIdFor(Departement::class)->nullable()->constrained()->cascadeOnDelete();
+           $table->foreignIdFor(Departement::class)->constrained()->cascadeOnDelete();
+
         });
-
-        Schema::table('postes',function (Blueprint $table){
-
-            $table->foreignIdFor(Departement::class)->nullable()->constrained()->cascadeOnDelete();
-        });
-
-
     }
 
     /**
@@ -45,10 +40,7 @@ return new class extends Migration
             $table->dropForeignIdFor(Departement::class);
         });
 
-        Schema::table('postes',function (Blueprint $table){
 
-            $table->dropforeignIdFor(Departement::class);
-        });
 
 
 

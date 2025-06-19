@@ -7,8 +7,10 @@ use App\Http\Controllers\backend\ModuleController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\ParametreController;
 use App\Http\Controllers\backend\PermissionController;
-
-
+use App\Http\Controllers\DepartementController;
+use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\PosteController;
+use App\Models\Poste;
 
 Route::fallback(function () {
     return view('backend.utility.auth-404-basic');
@@ -35,7 +37,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         route::get('maintenance-up', 'maintenanceUp')->name('parametre.maintenance-up');
         route::get('maintenance-down', 'maintenanceDown')->name('parametre.maintenance-down');
         route::get('optimize-clear', 'optimizeClear')->name('parametre.optimize-clear');
-         Route::get('download-backup/{file}', 'downloadBackup')->name('setting.download-backup');  // download backup db
+        Route::get('download-backup/{file}', 'downloadBackup')->name('setting.download-backup');  // download backup db
     });
 
 
@@ -73,5 +75,39 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         route::post('store', 'store')->name('module.store');
         route::post('update/{id}', 'update')->name('module.update');
         route::get('delete/{id}', 'delete')->name('module.delete');
+    });
+
+
+    // Département
+    Route::prefix('departement')->name('departements.')->controller(DepartementController::class)->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('show/{id}', 'show')->name('show');
+        Route::get('edit/{id}', 'edit')->name('edit');
+        Route::post('update/{departement}', 'update')->name('update');
+        Route::get('delete/{id}', 'delete')->name('delete');
+    });
+
+    // Postes
+    Route::prefix('poste')->name('postes.')->controller(PosteController::class)->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('show/{id}', 'show')->name('show');
+        Route::get('edit/{id}', 'edit')->name('edit');
+        Route::post('update/{id}', 'update')->name('update');
+        Route::get('delete/{id}', 'delete')->name('delete');
+    });
+
+    // Employé
+    Route::prefix('employe')->name('employes.')->controller(EmployeController::class)->group(function () {
+        Route::get('', 'index')->name('index');
+        Route::get('create', 'create')->name('create');
+        Route::post('store', 'store')->name('store');
+        Route::get('show/{id}', 'show')->name('show');
+        Route::get('edit/{id}', 'edit')->name('edit');
+        Route::post('update/{id}', 'update')->name('update');
+        Route::post('delete/{id}', 'delete')->name('delete');
     });
 });

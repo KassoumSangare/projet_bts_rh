@@ -11,8 +11,8 @@ class Poste extends Model
     protected $fillable = [
         'titre',
         'statut',
-        'description',
-        'id_departement',
+        'description'
+
     ];
 
     public static function boot()

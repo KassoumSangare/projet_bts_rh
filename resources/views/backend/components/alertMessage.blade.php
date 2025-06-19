@@ -17,11 +17,20 @@
 @endif
 
 
+<!-- Success Alert -->
+@if ($Msg = Session::get('success'))
+    <div class="alert alert-success alert-top-border alert-dismissible fade show" role="alert">
+        <i class="ri-notification-off-line me-3 align-middle fs-16 text-success"></i><strong>{{ $Msg }}</strong>
+      
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
 
 
 
-{{-- 
+
+{{--
 <!-- Primary Alert -->
 <div class="alert alert-primary alert-top-border alert-dismissible fade show" role="alert">
     <i class="ri-user-smile-line me-3 align-middle fs-16 text-primary"></i><strong>Primary</strong> - Top border alert
@@ -61,7 +70,7 @@
     <i class="ri-mail-line me-3 align-middle fs-16 text-light"></i><strong>Light</strong> - Top border alert
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
-    
+
 <!-- Dark Alert -->
 <div class="alert alert-dark alert-top-border alert-dismissible fade show mb-0" role="alert">
     <i class="ri-refresh-line me-3 align-middle fs-16 text-body"></i><strong>Dark</strong> - Top border alert

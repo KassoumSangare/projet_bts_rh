@@ -5,7 +5,7 @@
         {{-- <h4 class="text-white"> {{config('app.name')}} </h4> --}}
         <!-- Dark Logo-->
         {{-- @if ($setting != null)
-            
+
             <!-- Light Logo-->
             <a href="#" class="logo logo-light">
                 <span class="logo-sm">
@@ -80,6 +80,25 @@
                             <i class="ri-dashboard-2-line"></i> <span>TABLEAU DE BORD</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
+                            href="{{ route('departements.index') }}">
+                           <i class="ri-community-line"></i> <span>Départements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
+                            href="{{ route('postes.index') }}">
+                          <i class="ri-psychotherapy-line"></i><span>Postes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
+                            href="#">
+                    <i class="ri-user-fill"></i><span>Employés</span>
+                        </a>
+                    </li>
+
                 @endcan
 
 
