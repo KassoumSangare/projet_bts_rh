@@ -83,7 +83,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('show/{id}', 'show')->name('show');
+        // Route::get('show/{id}', 'show')->name('show');
         Route::get('edit/{id}', 'edit')->name('edit');
         Route::post('update/{departement}', 'update')->name('update');
         Route::get('delete/{id}', 'delete')->name('delete');
@@ -94,7 +94,7 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('show/{id}', 'show')->name('show');
+        // Route::get('show/{id}', 'show')->name('show');
         Route::get('edit/{id}', 'edit')->name('edit');
         Route::post('update/{id}', 'update')->name('update');
         Route::get('delete/{id}', 'delete')->name('delete');
@@ -105,9 +105,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('', 'index')->name('index');
         Route::get('create', 'create')->name('create');
         Route::post('store', 'store')->name('store');
-        Route::get('show/{id}', 'show')->name('show');
+        // Route::get('show/{id}', 'show')->name('show');
         Route::get('edit/{id}', 'edit')->name('edit');
         Route::post('update/{id}', 'update')->name('update');
-        Route::post('delete/{id}', 'delete')->name('delete');
+        Route::get('delete/{id}', 'delete')->name('delete');
     });
 });

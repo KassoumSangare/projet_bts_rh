@@ -28,6 +28,6 @@ class Poste extends Model
     public function employe()
     {
 
-        return $this->hasMany(Employe::class);
+        return $this->hasOne(Employe::class);
     }
 }

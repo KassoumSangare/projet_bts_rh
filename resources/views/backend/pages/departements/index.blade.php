@@ -76,15 +76,16 @@
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">
                                                     <li>
-                                                        <a href="{{ route('departements.edit',$departement->id) }}"
+                                                        <a href="{{ route('departements.edit', $departement->id) }}"
                                                             class="dropdown-item edit-item-btn">
                                                             <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>
                                                             Modifier
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="{{ route('departements.delete',$departement->id) }}" class="dropdown-item remove-item-btn delete"
-                                                            data-id={{ $departement->id}}>
+                                                        <a href="{{ route('departements.delete', $departement->id) }}"
+                                                            class="dropdown-item remove-item-btn delete"
+                                                            data-id={{ $departement->id }}>
                                                             <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i>
                                                             Supprimer
                                                         </a>

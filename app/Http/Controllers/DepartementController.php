@@ -81,6 +81,7 @@ class DepartementController extends Controller
     // // Supprime un département
     public function delete($id)
     {
+       
         try {
             $departement = Departement::find($id);
             $departement->delete();

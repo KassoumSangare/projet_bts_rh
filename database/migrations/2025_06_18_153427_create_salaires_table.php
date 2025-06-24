@@ -21,7 +21,7 @@ return new class extends Migration
         });
          Schema::table('employes', function(Blueprint $table){
 
-            $table->foreignIdFor(Salaire::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Salaire::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

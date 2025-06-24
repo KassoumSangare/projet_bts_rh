@@ -28,7 +28,7 @@ return new class extends Migration
 
          Schema::table('employes', function(Blueprint $table){
 
-            $table->foreignIdFor(Contrat::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Contrat::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

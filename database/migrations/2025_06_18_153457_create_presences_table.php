@@ -22,7 +22,7 @@ return new class extends Migration
         });
          Schema::table('employes', function(Blueprint $table){
 
-            $table->foreignIdFor(Presence::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Presence::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

@@ -26,7 +26,7 @@ return new class extends Migration
 
         Schema::table('employes', function (Blueprint $table) {
 
-            $table->foreignIdFor(Poste::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Poste::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

@@ -94,7 +94,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
-                            href="#">
+                            href="{{ route('employes.index') }}">
                     <i class="ri-user-fill"></i><span>Employés</span>
                         </a>
                     </li>

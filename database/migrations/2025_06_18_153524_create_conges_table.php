@@ -33,7 +33,7 @@ return new class extends Migration
         });
          Schema::table('employes', function(Blueprint $table){
 
-            $table->foreignIdFor(Conge::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Conge::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 

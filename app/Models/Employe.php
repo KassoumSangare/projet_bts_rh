@@ -8,10 +8,9 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 class Employe extends Model
 {
     protected $fillable = [
-
         'nom',
-        'prenom',
-        'Nationalite',
+        'prenoms',
+        'nationalite',
         'contact_urgence',
         'numero_compte_bancaire',
         'matricule',
@@ -22,13 +21,12 @@ class Employe extends Model
         'adresse',
         'date_embauche',
         'statut',
-        'id_poste',
-        'id_contrat',
-        'id_departement',
-        'id_presence',
-        'id_salaire',
-        'id_conge',
+        'departement_id',
+        'poste_id',
+        'salaire_id',
+        'contrat_id',
     ];
+
 
     public static function boot()
     {
@@ -48,12 +46,6 @@ class Employe extends Model
     }
 
 
-    public function conge()
-    {
-
-        return $this->hasMany(Conge::class);
-    }
-
 
     public function poste()
     {
@@ -62,16 +54,10 @@ class Employe extends Model
     }
 
 
-    public function presence()
-    {
-
-        return $this->hasMany(Presence::class);
-    }
-
     public function salaire()
     {
 
-        return $this->hasMany(Salaire::class);
+        return $this->belongsTo(Salaire::class);
     }
 
     public function contrat()

@@ -19,18 +19,15 @@ return new class extends Migration
             $table->string('contact_urgence')->nullable();
             $table->string('numero_compte_bancaire')->nullable();
             $table->string('matricule')->unique()->nullable();
-            $table->enum('sexe',['masculin', 'feminin'])->nullable();
+            $table->enum('sexe', ['Homme', 'Femme', 'Autre'])->nullable();
             $table->date('date_naissance')->nullable();
             $table->string('email')->unique()->nullable();
             $table->text('telephone')->nullable();
-            $table->text('adresse')->nullable();
+            $table->string('adresse')->nullable();
             $table->date('date_embauche')->nullable();
             $table->enum('statut', ['actif', 'inactif', 'suspendu'])->default('actif');
-            $table->foreignId('departements');
             $table->timestamps();
         });
-
-
     }
 
     /**
