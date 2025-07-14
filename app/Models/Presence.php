@@ -7,13 +7,22 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Presence extends Model
 {
+
     protected $fillable = [
-        'date',
-        'heure_arrivee',
-        'heure_depart',
-        'heure_sup',
-        'statut',
+        'user_id',
+        'date_de_connexion',
+        'date_de_deconnexion',
     ];
+
+
+
+    protected $casts = [
+        'date_de_connexion' => 'datetime',
+        'date_de_deconnexion' => 'datetime',
+    ];
+
+
+
 
     public static function boot()
     {
@@ -29,5 +38,10 @@ class Presence extends Model
     {
 
         return $this->belongsTo(Employe::class);
+    }
+
+     public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

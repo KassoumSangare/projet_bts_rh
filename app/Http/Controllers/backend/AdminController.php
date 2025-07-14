@@ -2,25 +2,53 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\User;
-use App\Models\Caisse;
-use App\Models\Setting;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\Caisse;
 use App\Models\HistoriqueCaisse;
+use App\Models\Presence;
+use App\Models\Setting;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
+    // pointage présence
+    public function presence()
+    {
+
+        // vérifions que  l'utilisateur existe
+        $user = Auth::user();
+        $today = Carbon::today();
+        $userExiste = Presence::where('user_id', $user->id)->whereDate('date_de_connexion', $today)->first();
+
+        if (!$userExiste) {
+
+            // récupération de l'utilisateur connecter
+            $user = auth::user();
+
+            $intoPresence = Presence::create([
+                'user_id' => $user->id,
+                'date_de_connexion' => Carbon::now(),
+
+            ]);
+        }
+    }
+
+
+
+
     //
     public function login(Request $request)
     {
 
         if (request()->method() == 'GET') {
+
             return view('backend.pages.auth-admin.login');
         } elseif (request()->method() == 'POST') {
             $credentials = $request->validate([
@@ -28,7 +56,8 @@ class AdminController extends Controller
                 'password' => ['required'],
             ]);
             if (Auth::attempt($credentials)) {
-                Alert::success('Connexion réussi,  Bienvenue  ' . Auth::user()->first_name, 'Success Message');
+                $this->presence();
+                Alert::success('Connexion réussi,  Bienvenue  ' . Auth::user()->first_name .' vôtre présence a bien été enregistrée', 'Success Message');
                 return redirect()->route('dashboard.index');
             } else {
                 // Alert::error('Email ou mot de passe incorrect' , 'Error Message');
@@ -43,6 +72,27 @@ class AdminController extends Controller
     //logout admin
     public function logout(Request $request)
     {
+        $user = Auth::user();
+
+        $today = Carbon::today();
+
+
+        $lastPresence = Presence::where('user_id', $user->id)
+            ->whereNull('date_de_deconnexion')
+            ->first();
+        $lastPresenceExist = Presence::where('user_id', $user->id)->whereDate('date_de_deconnexion',$today)->first();
+
+        if ($lastPresence){
+            $lastPresence->update([
+                'date_de_deconnexion' => Carbon::now(),
+            ]);
+        }
+
+        if($lastPresenceExist){
+            $lastPresenceExist->update([
+                'date_de_deconnexion' => Carbon::now(),
+            ]);
+        }
 
 
         Auth::logout();

@@ -83,22 +83,89 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
                             href="{{ route('departements.index') }}">
-                           <i class="ri-community-line"></i> <span>Départements</span>
+                            <i class="ri-community-line"></i> <span>Départements</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
                             href="{{ route('postes.index') }}">
-                          <i class="ri-psychotherapy-line"></i><span>Postes</span>
+                            <i class="ri-psychotherapy-line"></i><span>Postes</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
                             href="{{ route('employes.index') }}">
-                    <i class="ri-user-fill"></i><span>Employés</span>
+                            <i class="ri-user-fill"></i><span>Employés</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#menu-conge" data-bs-toggle="collapse" class="nav-link menu-link" aria-expanded="false"
+                            aria-controls="menu-conge">
+                            <i class="ri-calendar-2-line"></i>
+                            <span>Congés</span>
+                        </a>
 
+                        <div class="collapse" id="menu-conge">
+                            <ul class="nav flex-column ms-3">
+
+                                <!-- 📨 Demandes reçues -->
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('conge.ListeCongeDemander') ? 'active' : '' }}"
+                                        href="{{ route('conge.ListeCongeDemander') }}">
+                                        <i class="ri-mail-download-line"></i> Demandes reçues
+                                    </a>
+                                </li>
+
+                                <!-- 📋 Liste des congés -->
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('conge.index') ? 'active' : '' }}"
+                                        href="{{ route('conge.index') }}">
+                                        <i class="ri-file-list-3-line"></i> Liste des congés
+                                    </a>
+                                </li>
+
+                                <!-- 📝 Faire une demande de congé -->
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('conge.demandeConge') ? 'active' : '' }}"
+                                        href="{{ route('conge.demandeConge') }}">
+                                        <i class="ri-send-plane-line"></i> Demander un congé
+                                    </a>
+                                </li>
+
+                                <!-- ⏱️ Statut des demandes -->
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('conge.StatutConge') ? 'active' : '' }}"
+                                        href="{{ route('conge.StatutConge') }}">
+                                        <i class="ri-check-double-line"></i> Statut des demandes
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </li>
+
+                    {{-- <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
+                            href="{{ route('conge.demandeConge') }}">
+                            <i class="ri-time-line"></i> <span>Demander un congé</span>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
+                            href="{{ route('conge.index') }}">
+                            <i class="ri-calendar-check-line"></i> <span>Liste des congés</span>
+
+                        </a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
+                            href="{{ route('presence.index') }}">
+                            <i class="ri-line-chart-line"></i> <span>Historique de présence</span>
+
+                        </a>
+                    </li>
                 @endcan
 
 

@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('presences', function (Blueprint $table) {
+        Schema::create('demande_conges', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date_de_connexion')->nullable();
-            $table->timestamp('date_de_deconnexion')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('type_conge_id')->constrained('type_conges');
+            $table->date('date_debut');
+            $table->date('date_fin');
+            $table->string('motif')->nullable();
+            $table->integer('duree')->nullable();
+            $table->string('statut')->default('en_attente');
             $table->timestamps();
         });
     }
@@ -25,7 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('presences');
+        Schema::dropIfExists('demande_conges');
     }
 };
-

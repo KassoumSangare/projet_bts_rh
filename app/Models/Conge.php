@@ -9,27 +9,26 @@ class Conge extends Model
 {
 
     protected $fillable = [
+        'employe_id',
         'type_conge',
+        'statut',
         'date_debut',
         'date_fin',
-        'statut',
         'motif',
+        'description',
     ];
 
-     public static function boot()
+
+    public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'modules', 'length' => 10, 'prefix' =>
+            $model->id = IdGenerator::generate(['table' => 'conges', 'length' => 10, 'prefix' =>
             mt_rand()]);
         });
     }
-
-
-    // laisons
     public function employe()
-        {
-
-            return $this->belongsTo(Employe::class);
-        }
+    {
+        return $this->belongsTo(Employe::class);
+    }
 }

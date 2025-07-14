@@ -7,10 +7,13 @@ use App\Http\Controllers\backend\ModuleController;
 use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\ParametreController;
 use App\Http\Controllers\backend\PermissionController;
+use App\Http\Controllers\CongeController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\PosteController;
+use App\Http\Controllers\PresenceController;
 use App\Models\Poste;
+use App\Models\Presence;
 
 Route::fallback(function () {
     return view('backend.utility.auth-404-basic');
@@ -109,5 +112,28 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::get('edit/{id}', 'edit')->name('edit');
         Route::post('update/{id}', 'update')->name('update');
         Route::get('delete/{id}', 'delete')->name('delete');
+    });
+
+
+    // Congé
+    Route::prefix('conge')->name('conge.')->controller(CongeController::class)->group(function () {
+        Route::get('/registerForm', 'registerForm')->name('registerForm');
+        Route::get('/index', 'index')->name('index');
+        Route::get('/', 'form')->name('form');
+        Route::post('/store', 'store')->name('store');
+        Route::post('/update/{id}', 'update')->name('update');
+        Route::get('edit/{id}', 'edit')->name('edit');
+        Route::get('/delete/{id}', 'delete')->name('delete');
+        Route::get('/demandeConge', 'demandeConge')->name('demandeConge');
+        Route::post('/storeDemande', 'storeDemandeConge')->name('storeDemande');
+        Route::get('/ListeCongeDemander','ListeCongeDemander')->name('ListeCongeDemander');
+        Route::get('/accepteStatut/{id}','accepteStatut')->name('accepteStatut');
+        Route::get('/refuseStatut/{id}','refuseStatut')->name('refuseStatut');
+        Route::get('/StatutDemandeConge','StatutConge')->name('StatutConge');
+    });
+
+    // présence
+    Route::prefix('presence')->name('presence.')->controller(PresenceController::class)->group(function () {
+        Route::get('', 'index')->name('index');
     });
 });

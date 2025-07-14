@@ -64,4 +64,10 @@ class Employe extends Model
     {
         return $this->belongsTo(Contrat::class);
     }
+
+    public function conges()
+{
+    return $this->hasMany(Conge::class);
+}
+
 }

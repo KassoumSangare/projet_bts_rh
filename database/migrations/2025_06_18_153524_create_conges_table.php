@@ -14,6 +14,10 @@ return new class extends Migration
     {
         Schema::create('conges', function (Blueprint $table) {
             $table->id();
+            // Clé étrangère vers la table employes
+            $table->unsignedBigInteger('employe_id')->nullable();
+            $table->foreign('employe_id')->references('id')->on('employes')->onDelete('cascade');
+
             $table->enum('type_conge', [
                 'conge_annuel',
                 'conge_paternite',
@@ -25,17 +29,15 @@ return new class extends Migration
                 'conge_compensateur',
                 'autre'
             ]);
+            $table->string('statut');
             $table->date('date_debut');
             $table->date('date_fin');
             $table->string('motif');
-            $table->enum('statut', ['en_attente', 'accepte', 'refuse'])->default('en_attente');
+            $table->longText('description');
             $table->timestamps();
         });
-         Schema::table('employes', function(Blueprint $table){
-
-            $table->foreignIdFor(Conge::class)->nullable()->constrained()->cascadeOnDelete();
-        });
     }
+
 
     /**
      * Reverse the migrations.
@@ -43,8 +45,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('conges');
-         Schema::table('employes' , function(Blueprint $table){
-            $table->dropForeignIdFor(Conge::class);
-        });
     }
 };

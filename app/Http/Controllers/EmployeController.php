@@ -7,6 +7,7 @@ use App\Http\Requests\CreateEmployeRequest;
 use App\Models\Departement;
 use App\Models\Employe;
 use App\Models\Poste;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -18,7 +19,6 @@ class EmployeController extends Controller
      */
     public function index()
     {
-
         try {
 
             $employes = Employe::with('departement')->paginate(10);
@@ -55,6 +55,7 @@ class EmployeController extends Controller
         try {
 
             Employe::create($request->validated());
+           
             return redirect()
                 ->route('employes.index')
                 ->with('success_message', "L'employé a été enregistré avec succès.");
@@ -127,4 +128,6 @@ class EmployeController extends Controller
             ]);
         }
     }
+
+
 }

@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('presences', function (Blueprint $table) {
+        Schema::create('type_conges', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date_de_connexion')->nullable();
-            $table->timestamp('date_de_deconnexion')->nullable();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('type');
+            $table->longText('libelle');
+            $table->integer('duree');
             $table->timestamps();
         });
     }
@@ -25,7 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('presences');
+        Schema::dropIfExists('type_conges');
     }
 };
-
