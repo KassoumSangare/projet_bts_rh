@@ -66,7 +66,7 @@
                                                 <i class="ri-check-line"></i>
                                             </a>
 
-                                            <a href="{{ route('conge.refuseStatut', $demande->id) }}"
+                                            <a href="{{ route('conge.motifRefuserConge',$demande->id) }}"
                                                 class="btn btn-sm btn-outline-danger" title="Refuser"
                                                 data-id="{{ $demande->id }}">
                                                 <i class="ri-close-line"></i>

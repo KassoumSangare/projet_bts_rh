@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCongeRequest;
 use App\Http\Requests\StoreDemandeCongeRequest;
-use App\Http\Requests\StoreDemandeCongeResuest;
-use App\Models\TypeConge;
 use App\Models\DemandeConge;
+use App\Models\TypeConge;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Exception;
 use Carbon\Carbon;
-// use Illuminate\Container\Attributes\Auth;
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Symfony\Component\ErrorHandler\Debug;
 
 class CongeController extends Controller
 {
@@ -39,6 +39,7 @@ class CongeController extends Controller
 
     public function store(StoreCongeRequest $request)
     {
+
         try {
 
             $data = $request->validated();
@@ -117,8 +118,10 @@ class CongeController extends Controller
     }
 
 
+
     public function storeDemandeConge(StoreDemandeCongeRequest $request)
     {
+
 
         try {
             $user = Auth::user();
@@ -167,22 +170,38 @@ class CongeController extends Controller
 
         return redirect()->back()->with('success', 'Demande approuvée avec succès.');
     }
-    public function refuseStatut($id)
+
+
+    public function refuseStatut($id, Request $request)
     {
 
-        $demande = DemandeConge::findOrFail($id);
+        $demande = DemandeConge::FindOrFail($id);
 
         $demande->statut = 'refuser';
+        $demande->motif_refus = $request->input('motif_refus');
         $demande->save();
 
-        return redirect()->back()->with('success', 'Demande refusée avec succès.');
+        return redirect()->route('conge.ListeCongeDemander')->with('success', 'Demande refusée avec succès.');
+    }
+
+    public function motifRefuserConge($id)
+    {
+        $demande = DemandeConge::FindOrFail($id);
+
+
+
+        return view('backend.pages.conge.motifRefuseConge', compact('demande'));
     }
 
 
-    public function StatutConge(){
 
-        return view('backend.pages.conge.statutDemande',[
-            'demandes' => DemandeConge::where('statut','!=','en_attente')->latest()->paginate(10),
+
+
+    public function StatutConge()
+    {
+        return view('backend.pages.conge.statutDemande', [
+            'demandes' => DemandeConge::where('statut', '!=', 'en_attente')->latest()->paginate(10),
+            'types' => TypeConge::all(), 
         ]);
     }
 }

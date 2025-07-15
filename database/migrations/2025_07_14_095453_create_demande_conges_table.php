@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('type_conge_id')->constrained('type_conges');
-            $table->date('date_debut');
-            $table->date('date_fin');
+            $table->dateTime('date_debut');
+            $table->dateTime('date_fin');
             $table->string('motif')->nullable();
+            $table->string('motif_refus')->nullable();
             $table->integer('duree')->nullable();
             $table->string('statut')->default('en_attente');
             $table->timestamps();

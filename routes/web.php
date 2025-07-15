@@ -128,8 +128,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
         Route::post('/storeDemande', 'storeDemandeConge')->name('storeDemande');
         Route::get('/ListeCongeDemander','ListeCongeDemander')->name('ListeCongeDemander');
         Route::get('/accepteStatut/{id}','accepteStatut')->name('accepteStatut');
-        Route::get('/refuseStatut/{id}','refuseStatut')->name('refuseStatut');
+        Route::put('/refuseStatut/{id}','refuseStatut')->name('refuseStatut');
         Route::get('/StatutDemandeConge','StatutConge')->name('StatutConge');
+        Route::get('/motifRefuserConge/{id}','motifRefuserConge')->name('motifRefuserConge');
     });
 
     // présence

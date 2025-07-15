@@ -16,8 +16,10 @@ class StoreDemandeCongeRequest extends FormRequest
         return [
             'type_conge' => 'required|exists:type_conges,id',
             'date_debut' => 'required|date',
-            'date_fin'   => 'required|date|after_or_equal:date_debut',
+            'date_fin'   => 'required|date',
             'motif'      => 'nullable|string|max:1000',
+           'motif_refus' => 'nullable|string|max:1000',
+
         ];
     }
 

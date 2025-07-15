@@ -13,6 +13,7 @@ class DemandeConge extends Model
         'date_debut',
         'date_fin',
         'motif',
+        'motif_refus',
         'duree',
         'statut'
     ];
