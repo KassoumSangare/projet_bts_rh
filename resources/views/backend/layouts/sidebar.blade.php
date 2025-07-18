@@ -144,8 +144,14 @@
                         </div>
 
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }}"
+                            href="{{ route('payment.formSalaire') }}">
+                            <i class="ri-money-dollar-circle-line"></i> <span>Salaire</span>
+                        </a>
 
-                    {{-- <li class="nav-item">
+
+                        {{-- <li class="nav-item">
                         <a class="nav-link menu-link {{ Route::is('dashboard.*') ? 'active' : '' }} "
                             href="{{ route('conge.demandeConge') }}">
                             <i class="ri-time-line"></i> <span>Demander un congé</span>

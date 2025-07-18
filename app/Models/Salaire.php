@@ -7,26 +7,28 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Salaire extends Model
 {
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'mois',
-        'annee',
+        'date',
+        'employe_id',
         'montant',
+        'poste_id'
+
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'modules', 'length' => 10, 'prefix' =>
-            mt_rand()]);
-        });
-    }
-    // Liaison
+
 
     public function employe()
     {
-
         return $this->belongsTo(Employe::class);
     }
+
+    public function poste(){
+        return $this->belongsTo(Poste::class);
+    }
+
+
+
 }

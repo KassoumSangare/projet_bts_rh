@@ -14,14 +14,10 @@ return new class extends Migration
     {
         Schema::create('salaires', function (Blueprint $table) {
             $table->id();
-            $table->string('mois')->nullable();
-            $table->year('annee');
+            $table->date('date')->nullable();
+            $table->foreignId('employe_id')->constrained()->cascadeOnDelete();
             $table->double('montant')->nullable();
             $table->timestamps();
-        });
-         Schema::table('employes', function(Blueprint $table){
-
-            $table->foreignIdFor(Salaire::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -32,9 +28,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('salaires');
 
-        Schema::table('employes' , function(Blueprint $table){
+        Schema::table('employes', function (Blueprint $table) {
             $table->dropForeignIdFor(Salaire::class);
         });
     }
-
 };

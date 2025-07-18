@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\PermissionController;
 use App\Http\Controllers\CongeController;
 use App\Http\Controllers\DepartementController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\PresenceController;
 use App\Models\Poste;
@@ -136,5 +137,14 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     // présence
     Route::prefix('presence')->name('presence.')->controller(PresenceController::class)->group(function () {
         Route::get('', 'index')->name('index');
+    });
+
+
+    // Payment
+    Route::prefix('payment')->name('payment.')->controller(PaymentController::class)->group(function(){
+        Route::get('/','formSalaire')->name('formSalaire');
+        Route::post('/StoreSalaire','StoreSalaire')->name('StoreSalaire');
+        Route::get('/ficheSalaire/{id}','genererPDF')->name('ficheSalaire');
+        Route::get('AllFicheEmploye','AllFicheEmploye')->name('AllFicheEmploye');
     });
 });

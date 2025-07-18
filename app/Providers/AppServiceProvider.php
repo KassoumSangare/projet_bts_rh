@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-         Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
 
         $this->app->booted(function () {
             try {
@@ -56,5 +56,6 @@ class AppServiceProvider extends ServiceProvider
         view()->share([
             'parametre' => $data_parametre ?? null,
         ]);
+        \Carbon\Carbon::setLocale('fr');
     }
 }

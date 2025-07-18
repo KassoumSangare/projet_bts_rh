@@ -30,4 +30,6 @@ class Poste extends Model
 
         return $this->hasOne(Employe::class);
     }
+
+    
 }
